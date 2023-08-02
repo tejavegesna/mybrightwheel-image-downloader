@@ -28,3 +28,4 @@ jobs:
       with:
         name: extension
         path: extension-${{ steps.sha.outputs.sha }}.zip
+
