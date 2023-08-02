@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install zip
+      run: sudo apt-get install zip
+
+    - name: Build extension
+      run: zip -r extension.zip .
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: extension
+        path: extension.zip
