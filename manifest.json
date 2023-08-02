@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Brightwheel Email Images Downloader",
+    "version": "1.0",
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "action": {
+      "default_title": "Brightwheel Image Downloader"
+    },
+    "background": {
+      "service_worker": "background.js"
+    }
+  }
+  
