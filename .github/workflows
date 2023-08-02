@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install zip
+      run: sudo apt-get install zip
+
+    - name: Get short SHA
+      id: sha
+      run: echo "::set-output name=sha::$(git rev-parse --short HEAD)"
+
+    - name: Build extension
+      run: zip -r extension-${{ steps.sha.outputs.sha }}.zip .
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: extension
+        path: extension-${{ steps.sha.outputs.sha }}.zip
